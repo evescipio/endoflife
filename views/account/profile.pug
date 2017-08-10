@@ -1,0 +1,126 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Profile Information
+    h5 #{user.name}
+    label.col-sm-3.control-label
+    .col-sm-4
+      img.rounded-circle(src="https://image.eveonline.com/Character/" + user.userID + "_128.jpg", class='profile', width='100', height='100') 
+  form.form-horizontal(action='/account/profile', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='email') Email
+      .col-sm-7
+        input.form-control(type='email', name='email', id='email', value=user.email)
+    .form-group
+      label.col-sm-3.control-label Gender
+      .col-sm-6
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.gender=='male', name='gender', value='male', data-toggle='radio')
+          span Male
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.gender=='female', name='gender', value='female', data-toggle='radio')
+          span Female
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.gender=='other', name='gender', value='other', data-toggle='radio')
+          span Other
+    .form-group
+      label.col-sm-3.control-label(for='location') Location
+      .col-sm-7
+        input.form-control(type='text', name='location', id='location', value=user.profile.location)
+    .form-group
+      label.col-sm-3.control-label(for='timezone') Timezone
+      .col-sm-7
+        select.form-control(name='timezone', id='timezone', value=user.profile.timezone)
+          option(value="", selected="selected") Select your timezone
+          option(value="-12") (GMT -12:00) Eniwetok, Kwajalein
+          option(value="-11") (GMT -11:00) Midway Island, Samoa
+          option(value="-10") (GMT -10:00) Hawaii
+          option(value="-9.5") (GMT -09:50) Taiohae
+          option(value="-9") (GMT -09:00) Alaska
+          option(value="-8.") (GMT -8:00) Pacific Time (US & Canada)
+          option(value="-7.") (GMT -7:00) Mountain Time (US & Canada)
+          option(value="-6.") (GMT -6:00) Central Time (US & Canada), Mexico City
+          option(value="-5.") (GMT -5:00) Eastern Time (US & Canada), Bogota, Lima
+          option(value="-4.5") (GMT -4:30) Caracas
+          option(value="-4.") (GMT -4:00) Atlantic Time (Canada), Caracas, La Paz
+          option(value="-3.5") (GMT -3:30) Newfoundland
+          option(value="-3.") (GMT -3:00) Brazil, Buenos Aires, Georgetown
+          option(value="-2.") (GMT -2:00) Mid-Atlantic
+          option(value="-1.") (GMT -1:00) Azores, Cape Verde Islands
+          option(value=".") (GMT 0:00) Western Europe Time, London, Lisbon, Casablanca
+          option(value="1.") (GMT 1:00) Brussels, Copenhagen, Madrid, Paris
+          option(value="2.") (GMT 2:00) Kaliningrad, South Africa
+          option(value="3.") (GMT 3:00) Baghdad, Riyadh, Moscow, St. Petersburg
+          option(value="3.5") (GMT 3:30) Tehran
+          option(value="4.") (GMT 4:00) Abu Dhabi, Muscat, Baku, Tbilisi
+          option(value="4.5") (GMT 4:30) Kabul
+          option(value="5.") (GMT 5:00) Ekaterinburg, Islamabad, Karachi, Tashkent
+          option(value="5.5") (GMT 5:30) Bombay, Calcutta, Madras, New Delhi
+          option(value="5.75") (GMT 5:45) Kathmandu, Pokhara
+          option(value="6.") (GMT 6:00) Almaty, Dhaka, Colombo
+          option(value="6.5") (GMT 6:30) Yangon, Mandalay
+          option(value="7.") (GMT 7:00) Bangkok, Hanoi, Jakarta
+          option(value="8.") (GMT 8:00) Beijing, Perth, Singapore, Hong Kong
+          option(value="8.75") (GMT 8:45) Eucla
+          option(value="9.") (GMT 9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk
+          option(value="9.5") (GMT 9:30) Adelaide, Darwin
+          option(value="10.") (GMT 10:00) Eastern Australia, Guam, Vladivostok
+          option(value="10.5") (GMT 10:30) Lord Howe Island
+          option(value="11.") (GMT 11:00) Magadan, Solomon Islands, New Caledonia
+          option(value="11.5") (GMT 11:30) Norfolk Island
+          option(value="12.") (GMT 12:00) Auckland, Wellington, Fiji, Kamchatka
+          option(value="12.75") (GMT 12:45) Chatham Islands
+          option(value="13.") (GMT 13:00) Apia, Nukualofa
+          option(value="14.") (GMT 14:00) Line Islands, Tokelau
+    .form-group
+      label.col-sm-3.control-label(for='website') Website
+      .col-sm-7
+        input.form-control(type='text', name='website', id='website', value=user.profile.website)
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn.btn-primary(type='submit')
+          i.fa.fa-pencil
+          | Update Profile
+
+  .page-header
+    h3 Change Password
+
+  form.form-horizontal(action='/account/password', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='password') New Password
+      .col-sm-7
+        input.form-control(type='password', name='password', id='password')
+    .form-group
+      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
+      .col-sm-7
+        input.form-control(type='password', name='confirmPassword', id='confirmPassword')
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn-primary(type='submit')
+          i.fa.fa-lock
+          | Change Password
+
+  .page-header
+    h3 Delete Account
+
+  form.form-horizontal(action='/account/delete', method='POST')
+    .form-group
+      p.col-sm-offset-3.col-sm-4 You can delete your account, but keep in mind this action is irreversible.
+      input(type='hidden', name='_csrf', value=_csrf)
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn-danger(type='submit')
+          i.fa.fa-trash
+          | Delete my account
+
+  .page-header
+    h3 Linked Accounts
+  .form-horizontal
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        if user.facebook
+          p: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
+        else
+          p: a(href='/auth/facebook') Link your Facebook account

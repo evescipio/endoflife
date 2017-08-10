@@ -143,7 +143,6 @@ export let postUpdateProfile = (req: Request, res: Response, next: NextFunction)
   User.findById(req.user.id, (err, user: UserModel) => {
     if (err) { return next(err); }
     user.email = req.body.email || "";
-    user.name = req.body.name || "";
     user.profile.gender = req.body.gender || "";
     user.profile.location = req.body.location || "";
     user.profile.timezone = req.body.timezone || "";

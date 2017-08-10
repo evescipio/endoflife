@@ -1,3 +1,7 @@
 footer
   .container.text-center
-    .pull-left &copy; 2017 Scipio Artelius. All Rights Reserved
+    p.pull-left © 2017 Scipio Artelius. MIT License
+    if !user
+      .pull-right
+        a(href="/login") Admin
+      
