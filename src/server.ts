@@ -28,6 +28,7 @@ dotenv.config({ path: ".env" });
  */
 import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user";
+import * as dashboardController from "./controllers/dashboard";
 
 /**
  * API keys and Passport configuration
@@ -114,6 +115,7 @@ app.get("/account", passportConfig.isAuthenticated, userController.getAccount);
 app.post("/account/profile", passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
+app.get("/dashboard", passportConfig.isEOLMember, dashboardController.index);
 
 /**
  * API routes.
@@ -125,7 +127,7 @@ app.post("/account/delete", passportConfig.isAuthenticated, userController.postD
  */
 app.get("/auth/eve_online", passport.authenticate("eve_online"));
 app.get("/auth/eve_online/callback", passport.authenticate("eve_online", { failureRedirect: "/" }), (req, res) => {
-    res.redirect(req.session.returnTo || "/");
+    res.redirect("/dashboard");
 });
 
  /**

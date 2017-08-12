@@ -1,32 +1,40 @@
-extends layout
+extends home_layout
 
 block content
-  .jumbotron
-    h1 End Of Life Alliance
-    p This is some really compelling text that will make people want to join immediately
-    p
-      a.btn.btn-primary.btn-lg(href='/', role='button') Learn more
-  
-  .row
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapidus, tellus as cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details >>
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapidus, tellus as cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details >>
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapidus, tellus as cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details >>
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapidus, tellus as cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details >>
-  if user
-    he #{user}
+
+  .showcase
+    .row
+      .col-md-4.offset-md-4
+        p.login
+          a(href='/auth/eve_online') Login
+  .container
+    .information
+      .row
+        .col-md-12.col-lg-4
+          .card
+            .card-header PVP focus
+            .card-block
+              p.card-text No politics. No bullshit. Just PVP.
+              p.card-text End of Life is a small AU/EU timezone alliance that believes the best fun in EVE is had when blowing shit up:
+              ul.card-text
+                li.card-text No blues policy
+                li.card-text Public NPSI fleet
+                li.card-text Nullsec/lowsec roaming
+                li.card-text Alliance Tournament play
+              p.card-text We use Discord for voice comms and out of game chat; and often play other games together as well.
+              p.card-text Alliance FCs (anyone that wants to be) run roams pre and post downtime on Monday, Wednesday, Friday and Sunday.
+        .hidden-md-down.col-lg-4
+          img.logo(src='img/EOLLogo_256.png')
+        .col-md-12.col-lg-4
+          .card
+            .card-header Services for members
+            .card-block
+              p.card-text Do what you like. We'll try to help.
+              p.card-text The alliance is focused on trying to provide fun for members, not making the leadership rich. So we maintain:
+              ul.card-text
+                li.card-text Low corp taxes
+                li.card-text Everyone as equals
+                li.card-text No compulsory activities
+                li.card-text Free use of Citadel facilities
+              p.card-text We take a choose your own adventure approach to the game. Everyone is free to do what they like.
+              p.card-text We run occasional PVE fleets to repair security status and generate ISK, but members often just do these solo.

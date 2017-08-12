@@ -6,14 +6,12 @@
  */
 
 // Core variables and mixins
-@import "variables";
+// @import "variables";
 @import "mixins";
 @import "custom";
-
 // Reset and dependencies
 @import "normalize";
 @import "print";
-
 // Core CSS
 @import "reboot";
 @import "type";
@@ -23,7 +21,6 @@
 @import "tables";
 @import "forms";
 @import "buttons";
-
 // Components
 @import "transitions";
 @import "dropdown";
@@ -43,12 +40,10 @@
 @import "list-group";
 @import "responsive-embed";
 @import "close";
-
 // Components w/ JavaScript
 @import "modal";
 @import "tooltip";
 @import "popover";
 @import "carousel";
-
 // Utility classes
 @import "utilities";

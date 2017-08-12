@@ -102,3 +102,14 @@ export let isAuthorized = (req: Request, res: Response, next: NextFunction) => {
         res.redirect(`/auth/${provider}`);
     }
 };
+
+export let isEOLMember = (req: Request, res: Response, next: NextFunction) => {
+    if (req.isAuthenticated()) {
+        console.log(req.user.corporation);
+        console.log(req.user.corporation == 480079747);
+        if (req.user.corporation == 480079747) {
+            return next();
+        }
+        res.redirect("/public");
+    }
+};

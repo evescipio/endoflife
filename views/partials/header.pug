@@ -1,30 +1,29 @@
-.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
-  .container
-    button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
-      span.navbar-toggler-icon
-    a.navbar-brand(href='/')
-      i.fa.fa-cube
-      | End Of Life Alliance
-    .collapse.navbar-collapse(id="navbarNavDropdown")
-      ul.navbar-nav.mr-auto
+.navbar.navbar-toggleable-md.navbar-inverse.bg-inverse.fixed-top
+  button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
+    span.navbar-toggler-icon
+  a.navbar-brand(href='/')
+    i.fa.fa-cube
+    | End Of Life Alliance
+  .collapse.navbar-collapse(id="navbarNavDropdown")
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/dashboard') Dashboard
+          span.sr-only (current)
+      li.nav-item
+        a.nav-link(href='/contact') Contact
+    ul.navbar-nav
+      if !user
         li.nav-item
-          a.nav-link(href='/') Home
-            span.sr-only (current)
-        li.nav-item
-          a.nav-link(href='/contact') Contact
-      ul.navbar-nav
-        if !user
-          li.nav-item
-            a.nav-link(href='/auth/eve_online') Login
-        else
-          li.nav-item.dropdown
-            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', id="navbarDropdownMenuLink", aria-haspopup="true", aria-expanded="false")
-              img.rounded-circle(src="https://image.eveonline.com/Character/" + user.userID + "_32.jpg", width="20", height="20")
-              =' '
-              span= user.name || user.id
-              =' '
-              i.caret
-            .dropdown-menu(aria-labelledby="navbarDropdownMenuLink")
-              a.dropdown-item(href='/account') My Account
-              .divider
-              a.dropdown-item(href='/logout') Logout
+          a.nav-link(href='/auth/eve_online') Login
+      else
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', id="navbarDropdownMenuLink", aria-haspopup="true", aria-expanded="false")
+            img.rounded-circle(src="https://image.eveonline.com/Character/" + user.userID + "_32.jpg", width="20", height="20")
+            =' '
+            span= user.name || user.id
+            =' '
+            i.caret
+          .dropdown-menu(aria-labelledby="navbarDropdownMenuLink")
+            a.dropdown-item(href='/account') My Account
+            .divider
+            a.dropdown-item(href='/logout') Logout
