@@ -64,15 +64,29 @@ passport.use(new EveStrategy({
             user.userID = profile.characterID;
             user.name = profile.characterName;
             user.ownerHash = profile.characterOwnerHash;
-            const url = "https://esi.tech.ccp.is/latest/characters/" + profile.characterID + "/?datasource=tranquility";
+            let url = "https://esi.tech.ccp.is/latest/characters/" + profile.characterID + "/?datasource=tranquility";
             https.get(url, (res) => {
                 let data = "";
                 res.on("data", (chunk: any) => { data += chunk; });
                 res.on("end", () => {
-                    const json_data = JSON.parse(data);
-                    user.corporation = json_data.corporation_id;
-                    user.save((err: Error, user: any) => {
-                        return done(err, user);
+                    let json_data = JSON.parse(data);
+                    user.race = json_data.race_id;
+                    user.bloodline = json_data.bloodline_id,
+                    user.ancestry = json_data.ancestry_id,
+                    user.corporation.corpID = json_data.corporation_id;
+                    url = "https://esi.tech.ccp.is/latest/corporations/names/?corporation_ids=" + json_data.corporation_id + "&datasource=tranquility";
+                    data = "";
+                    json_data = "";
+                    https.get(url, (res) => {
+                        res.on("data", (chunk: any) => { data += chunk; });
+                        res.on("end", () => {
+                            json_data = JSON.parse(data);
+                            user.corporation.corpName = json_data[0].corporation_name;
+                            console.log(json_data);
+                            user.save((err: Error, user: any) => {
+                                return done(err, user);
+                            });
+                        });
                     });
                 });
             });
@@ -105,9 +119,9 @@ export let isAuthorized = (req: Request, res: Response, next: NextFunction) => {
 
 export let isEOLMember = (req: Request, res: Response, next: NextFunction) => {
     if (req.isAuthenticated()) {
-        console.log(req.user.corporation);
-        console.log(req.user.corporation == 480079747);
-        if (req.user.corporation == 480079747) {
+        console.log(req.user.corporation.corpID);
+        console.log(req.user.corporation.corpID == 480079747);
+        if (req.user.corporation.corpID == 480079747) {
             return next();
         }
         res.redirect("/public");

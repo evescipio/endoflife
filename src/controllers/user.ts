@@ -147,6 +147,7 @@ export let postUpdateProfile = (req: Request, res: Response, next: NextFunction)
     user.profile.location = req.body.location || "";
     user.profile.timezone = req.body.timezone || "";
     user.profile.website = req.body.website || "";
+    user.profile.signature = req.body.signature || "";
     user.save((err: WriteError) => {
       if (err) {
         if (err.code === 11000) {

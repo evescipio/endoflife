@@ -1,0 +1,126 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='theme-color', content='#4DA5F4')
+    meta(name='csrf-token', content=_csrf)
+    title #{title} - EOL Alliance
+    link(rel='shortcut icon', href='/img/favicon.png')
+    link(rel='stylesheet', href='/css/main.css')
+
+  body
+
+  #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog.modal-lg(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title Create Post
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .btn-toolbar(data-role='editor-toolbar', data-target='#editor')
+              .btn-group.btn-group-sm
+                a.btn.dropdown-toggle(data-toggle='dropdown', title='Font')
+                  i.fa.fa-font
+                  b.caret
+                ul.dropdown-menu
+              .btn-group.btn-group-sm
+                a.btn.dropdown-toggle(data-toggle='dropdown', title='Font Size')
+                  i.fa.fa-text-height
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a(data-edit='fontSize 5')
+                      font(size='5') Huge
+                  li
+                    a(data-edit='fontSize 3')
+                      font(size='3') Normal
+                  li
+                    a(data-edit='fontSize 1')
+                      font(size='1') Small
+              .btn-group.btn-group-sm
+                a.btn(data-edit='bold', title='Bold (Ctrl/Cmd+B)')
+                  i.fa.fa-bold
+                a.btn(data-edit='italic', title='Italic (Ctrl/Cmd+I)')
+                  i.fa.fa-italic
+                a.btn(data-edit='strikethrough', title='Strikethrough')
+                  i.fa.fa-strikethrough
+                a.btn(data-edit='underline', title='Underline (Ctrl/Cmd+U)')
+                  i.fa.fa-underline
+              .btn-group.btn-group-sm
+                a.btn(data-edit='insertunorderedlist', title='Bullet list')
+                  i.fa.fa-list-ul
+                a.btn(data-edit='insertorderedlist', title='Number list')
+                  i.fa.fa-list-ol
+                a.btn(data-edit='outdent', title='Reduce indent (Shift+Tab)')
+                  i.fa.fa-outdent
+                a.btn(data-edit='indent', title='Indent (Tab)')
+                  i.fa.fa-indent
+              .btn-group.btn-group-sm
+                a.btn(data-edit='justifyleft', title='Align Left (Ctrl/Cmd+L)')
+                  i.fa.fa-align-left
+                a.btn(data-edit='justifycenter', title='Center (Ctrl/Cmd+E)')
+                  i.fa.fa-align-center
+                a.btn(data-edit='justifyright', title='Align Right (Ctrl/Cmd+R)')
+                  i.fa.fa-align-right
+                a.btn(data-edit='justifyfull', title='Justify (Ctrl/Cmd+J)')
+                  i.fa.fa-align-justify
+              .btn-group.btn-group-sm
+                a.btn.dropdown-toggle(data-toggle='dropdown', title='Hyperlink')
+                  i.fa.fa-link
+                .dropdown-menu.input-append
+                  input.span2(placeholder='URL', type='text', data-edit='createLink')
+                  button.btn(type='button') Add
+                a.btn(data-edit='unlink', title='Remove Hyperlink')
+                  i.fa.fa-cut
+              .btn-group.btn-group-sm
+                a#pictureBtn.btn.dropdown-toggle(data-toggle='dropdown', title='Image')
+                  i.fa.fa-picture-o
+                .dropdown-menu.input-append
+                  input(type='file', data-role='magic-overlay', data-target='#pictureBtn', data-edit='insertImage')
+              .btn-group.btn-group-sm
+                a.btn(data-edit='undo', title='Undo (Ctrl/Cmd+Z)')
+                  i.fa.fa-undo
+                a.btn(data-edit='redo', title='Redo (Ctrl/Cmd+Y)')
+                  i.fa.fa-repeat
+            #editor Add text here
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button') Save changes
+
+  .container
+    .row
+        .col-lg-3
+          .card.card-profile.text-center
+            if user.race == 8
+              img.card-img-top(src="img/profile_gallente.png")
+            else if user.race == 1
+              img.card-img-top(src="img/profile_caldari.png")
+            else if user.race == 2
+              img.card-img-top(src="img/profile_minmatar.png")
+            else if user.race == 4
+              img.card-img-top(src="img/profile_amarr.png")
+            else
+              img.card-img-top(src="img/profile_top.png")
+            .card-block
+              img.card-img-profile.rounded-circle(src="https://image.eveonline.com/Character/" + user.userID + "_128.jpg")
+              h4.card-title #{user.name}
+              .small #{user.corporation.corpName}
+              img.card-img-corp(src="https://image.eveonline.com/Corporation/" + user.corporation.corpID + "_64.png")
+
+          button.btn.btn-primary(type="button" data-toggle="modal" data-target="#myModal") Open Modal
+
+    script(src='/js/lib/jquery.min.js')
+    script(src='/js/lib/tether.min.js')
+    script(src='/js/lib/bootstrap.min.js')
+    script(src='js/lib/jquery.hotkeys.js')
+    script(src='js/lib/bootstrap.wysiwyg.js')
+    script(src='/js/main.js')
+    script. 
+      $(document).ready(function() {
+        $('#editor').wysiwyg();
+      });
+
+    // Google Analytics to be added here

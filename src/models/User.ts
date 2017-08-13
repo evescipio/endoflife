@@ -7,8 +7,15 @@ export type UserModel = mongoose.Document & {
     password: string,
     userID: number,
     name: string,
+    race: number,
+    bloodline: number,
+    ancestry: number,
     ownerHash: string,
-    corporation: number,
+
+    corporation: {
+      corpID: Number,
+      corpName: String
+    },
 
     tokens: AuthToken[],
 
@@ -16,7 +23,8 @@ export type UserModel = mongoose.Document & {
         gender: string,
         location: string,
         timezone: number,
-        website: string
+        website: string,
+        signature: string
     },
 
     comparePassword: (candidatePassword: string, cb: (err: any, isMatch: any) => {}) => void
@@ -32,14 +40,24 @@ const userSchema = new mongoose.Schema({
     password: String,
     userID: { type: Number, unique: true },
     name: String,
+    race: Number,
+    bloodline: Number,
+    ancestry: Number,
     ownerHash: String,
-    corporation: Number,
+
+    corporation: {
+      corpID: Number,
+      corpName: String
+    },
+
+    tokens: Array,
 
     profile: {
-        gender: String,
-        location: String,
-        timezone: Number,
-        website: String
+      gender: String,
+      location: String,
+      timezone: Number,
+      website: String,
+      signature: String
     }
 }, { timestamps: true });
 

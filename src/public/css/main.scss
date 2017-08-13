@@ -2,11 +2,8 @@
 @import "themes/eol/eol_functions";
 @import "lib/bootstrap/bootstrap-reboot";
 @import "lib/bootstrap/bootstrap-grid";
+@import "lib/font-awesome/font-awesome";
 @import "lib/bootstrap/bootstrap";
-body {
-    color: set-text-color($primary-color);
-}
-
 .showcase {
     height: 500px;
     background: url(../img/top.jpg) no-repeat;
@@ -51,4 +48,112 @@ footer {
 
 footer p {
     color: $raisin-black;
+}
+
+$bg-start: #9d9181;
+$bg-end: #9e866c;
+$card-bg: #e6e5e1;
+$dribbble-color: #ea4b89;
+$twitter-color: #68aade;
+$facebook-color: #3b5999;
+.card-profile {
+    // width: 250px !important;
+    margin: 50px auto;
+    background-color: $card-bg;
+    border-radius: 0;
+    border: 0;
+    box-shadow: 1em 1em 2em rgba(0, 0, 0, .2);
+    .card-img-top {
+        border-radius: 0;
+        width: 100%;
+    }
+    .card-img-profile {
+        max-width: 100%;
+        border-radius: 50%;
+        margin-top: -95px !important;
+        margin-bottom: 10px;
+        border: 5px solid $card-bg;
+    }
+    .card-img-corp {
+        margin-top: 0.5em;
+    }
+    .card-title {
+        margin-bottom: 10px;
+        small {
+            display: block;
+            font-size: .6em;
+            margin-top: .2em;
+        }
+    }
+    .card-links {
+        margin-bottom: 25px;
+        .fa {
+            margin: 0 1em;
+            font-size: 1.6em;
+            &:focus,
+            &:hover {
+                text-decoration: none;
+            }
+            &.fa-dribbble {
+                color: $dribbble-color;
+                font-weight: bold;
+                &:hover {
+                    color: darken($dribbble-color, 10%);
+                }
+            }
+            &.fa-twitter {
+                color: $twitter-color;
+                &:hover {
+                    color: darken($twitter-color, 10%);
+                }
+            }
+            &.fa-facebook {
+                color: $facebook-color;
+                &:hover {
+                    color: darken($facebook-color, 10%);
+                }
+            }
+        }
+    }
+}
+
+.modal-body {
+    background-color: $white !important;
+    .btn-group {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+.btn a {
+    color: $raisin-black !important;
+}
+
+#editor {
+    max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 4px;
+    box-sizing: content-box;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    overflow: scroll;
+    outline: none;
+}
+
+div[data-role="editor-toolbar"] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dropdown-menu a {
+    cursor: pointer;
 }
